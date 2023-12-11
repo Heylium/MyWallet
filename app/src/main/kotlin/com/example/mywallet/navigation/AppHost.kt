@@ -17,53 +17,45 @@ fun AppHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Home.route,
+        startDestination = AppRoute.OVERVIEW,
         modifier = modifier,
     ) {
-        composable(route = Home.route) {
+        composable(route = AppRoute.OVERVIEW) {
             HomeScreen()
         }
 
         // account page
-        composable(route = Account.route) {
+        composable(route = AppRoute.INCOME_SCREEN) {
             AccountScreen()
         }
 
-        composable(route = PlanAmount.route) {
-            PlanAmountScreen()
-        }
-
-        // account transfer page
-        composable(route = AccountTransfer.route) {
-            AccountTransferScreen()
-        }
-
-        // income screen
-        composable(route = Income.route) {
-            InComeScreen()
-        }
-
-        // pay for screen
-        composable(route = PayFor.route) {
+        composable(route = AppRoute.PAY_FOR_SCREEN) {
             PayForScreen()
         }
 
-        // pay for screen
-        composable(route = AddAccount.route) {
-            AddAccountScreen()
+        // account transfer page
+        composable(route = AppRoute.PLAN_AMOUNT) {
+            PlanAmount()
+        }
+
+        // account transfer page
+        composable(route = AppRoute.ACCOUNT_TRANSFER) {
+            AddAccountTransfer()
+        }
+
+        // add income screen
+        composable(route = AppRoute.ADD_INCOME) {
+            AddIncome()
+        }
+
+        // add pay
+        composable(route = AppRoute.ADD_PAY_FOR) {
+            AddPayFor()
+        }
+
+        // add account
+        composable(route = AppRoute.ADD_ACCOUNT) {
+            AddAccount()
         }
     }
-}
-
-/**
- * restore screen scroll state when return
- */
-fun NavHostController.restoreStateOnReturn(route: String) = this.navigate(route) {
-    popUpTo(this@restoreStateOnReturn.graph.findStartDestination().id) {
-        saveState
-    }
-    launchSingleTop = true
-
-    restoreState = true
-
 }

@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MyWallet</string>
-    <string name="overview">OVERVIEW</string>
+    <string name="overview">概览</string>
     <string name="income">INCOME</string>
     <string name="pay_for">PAY_FOR</string>
     <string name="plan_amount">PLAN_AMOUNT</string>
@@ -8,5 +9,4 @@
     <string name="add_income">ADD_INCOM</string>
     <string name="add_pay_for">ADD_PAY_FOR</string>
     <string name="add_account">ADD_ACCOUNT</string>
-
 </resources>

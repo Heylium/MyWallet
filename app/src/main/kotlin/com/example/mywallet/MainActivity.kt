@@ -8,13 +8,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.mywallet.navigation.*
@@ -39,20 +38,24 @@ fun MyApp() {
     MyWalletTheme{
 
         val navController = rememberNavController()
+        val navigationActions = remember(navController) {
+            AppNavigationActions(navController)
+        }
+        val fabState = rememberSaveable { mutableStateOf(true) }
         val bottomBarState = rememberSaveable { mutableStateOf(true) }
-        val currentBackState by navController.currentBackStackEntryAsState()
-        val currentDestination = currentBackState?.destination
-        val bottomBarCurrentScreen = bottomBarItems.find { it.route == currentDestination?.route } ?: Home
+        val navBackStateEntry by navController.currentBackStackEntryAsState()
+        val currentDestination = navBackStateEntry?.destination
+        val selectedDestination = navBackStateEntry?.destination?.route?:AppRoute.OVERVIEW
 
 
         Surface {
             Scaffold(
+                floatingActionButton = { FabM3(fabState = fabState) },
                 bottomBar = {
                     AppBottomBarM3(
+                        selectedDestination = selectedDestination,
+                        navigationToTopLevelDestination = navigationActions::navigationTo,
                         bottomBarState = bottomBarState,
-                        bottomBarItems = bottomBarItems,
-                        bottomBarCurrentScreen = bottomBarCurrentScreen,
-                        onClick = { itemScreen -> navController.restoreStateOnReturn(itemScreen.route) }
                     )
                 }
             ) {
