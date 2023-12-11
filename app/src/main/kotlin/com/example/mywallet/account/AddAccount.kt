@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
  * income screen
  */
 @Composable
-fun AddAccountScreen() {
+fun AddAccount() {
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,

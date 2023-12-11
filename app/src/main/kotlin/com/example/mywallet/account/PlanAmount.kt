@@ -8,16 +8,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
+
 /**
- * account transfer screen
+ * plan amount
  */
 @Composable
-fun AccountTransferScreen() {
+fun PlanAmount() {
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        Text(text = "AccountTransfer Screen")
+        Text(text = "PlanAmount Screen")
     }
 }
